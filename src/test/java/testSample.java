@@ -90,6 +90,7 @@ public class testSample {
 
 		Thread.sleep(3000);
 		driver.findElement(By.cssSelector("label[for=single-team]")).click();
+		Thread.sleep(2000);
 		driver.findElement(By.cssSelector("button[type=button]")).click();
 		wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div/div[1]")));
