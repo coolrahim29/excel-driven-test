@@ -35,33 +35,29 @@ public class testSample {
 		String option2 = (String) navigate.get(7);
 		String option3 = (String) navigate.get(8);
 
-		// fill up the first sign in page
+		// fill up the first sign in pagex
 
 		driver.get((String) navigate.get(1));
-		driver.findElement(By.xpath("//*[@id=\"form-sign-up\"]/label[1]/input")).sendKeys(firstname);
-		driver.findElement(By.xpath("//*[@id=\"form-sign-up\"]/label[2]/input")).sendKeys(lastname);
-		driver.findElement(By.xpath("//*[@id=\"form-sign-up\"]/label[3]/input")).sendKeys(emailid);
-		driver.findElement(By.xpath("//*[@id=\"form-sign-up\"]/label[4]/input")).sendKeys(password);
-		driver.findElement(By.xpath("//*[@id=\"form-sign-up\"]/button")).click();
+		driver.findElement(By.cssSelector("input[name=contactName]")).sendKeys(firstname);
+		driver.findElement(By.cssSelector("input[name=companyName]")).sendKeys(lastname);
+		driver.findElement(By.cssSelector("input[name=email]")).sendKeys(emailid);
+		driver.findElement(By.cssSelector("input[name=password]")).sendKeys(password);
+		driver.findElement(By.cssSelector("button[type=submit]")).click();
 		// Thread.sleep(10000);
 
 		// navigate to second page wait for page to load and select further data.
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//*[@id=\"root\"]/div/div[2]/div/div[1]/div/div/form/div[1]/span/select")));
-		Select dropdown1 = new Select(driver
-				.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div[1]/div/div/form/div[1]/span/select")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("select[name=email-marketer-type]")));
+		Select dropdown1 = new Select(driver.findElement(By.cssSelector("select[name=email-marketer-type]")));
 		dropdown1.selectByVisibleText(option1);
 
-		Select dropdown2 = new Select(driver
-				.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div[1]/div/div/form/div[2]/span/select")));
+		Select dropdown2 = new Select(driver.findElement(By.cssSelector("select[name=email-marketer-role]")));
 		dropdown2.selectByVisibleText(option2);
-		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div[1]/div/div/form/div[3]/button")).click();
+		driver.findElement(By.cssSelector("button[type=button]")).click();
 
 		// navigate to third page wait for page to load and select further data.
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.xpath("//*[@id=\"root\"]/div/div[2]/div/div[1]/div/div/form/div[1]/span/select")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span[class=cmds-select]")));
 
 		Thread.sleep(5000);
 		Select dropdown3 = new Select(driver
@@ -72,11 +68,8 @@ public class testSample {
 				By.xpath("//*[@id=\"root\"]/div/div[2]/div/div[1]/div/div/form/div[2]/fieldset/div/div[2]/div"))
 				.click();
 
-		driver.findElement(
-				By.xpath("//*[@id=\"root\"]/div/div[2]/div/div[1]/div/div/form/div[3]/fieldset/div/div[1]/div/label"))
-				.click();
-		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div[1]/div/div/form/div[4]/div[2]/button"))
-				.click();
+		driver.findElement(By.cssSelector("label[for=online-seller-no")).click();
+		driver.findElement(By.cssSelector("button[type=button]")).click();
 
 		// navigate to fourth page wait for page to load and select further data.
 
@@ -87,11 +80,8 @@ public class testSample {
 				By.xpath("//*[@id=\"root\"]/div/div[2]/div/div[1]/div/div/form/div[1]/fieldset/div/div[3]/div"))
 				.click();
 
-		driver.findElement(
-				By.xpath("//*[@id=\"root\"]/div/div[2]/div/div[1]/div/div/form/div[2]/fieldset/div/div/div[3]/div"))
-				.click();
-		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div[1]/div/div/form/div[3]/div[2]/button"))
-				.click();
+		driver.findElement(By.cssSelector("label[for=no-stored-list")).click();
+		driver.findElement(By.cssSelector("button[type=button]")).click();
 
 		// navigate to fifth page wait for page to load and select further data.
 
@@ -99,18 +89,15 @@ public class testSample {
 				By.xpath("//*[@id=\"root\"]/div/div[2]/div/div[1]/div/div/form/div[1]/fieldset/div/div[1]/div")));
 
 		Thread.sleep(3000);
-		driver.findElement(
-				By.xpath("//*[@id=\"root\"]/div/div[2]/div/div[1]/div/div/form/div[1]/fieldset/div/div[1]/div"))
-				.click();
-		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div[1]/div/div/form/div[2]/div[2]/button"))
-				.click();
+		driver.findElement(By.cssSelector("label[for=single-team]")).click();
+		driver.findElement(By.cssSelector("button[type=button]")).click();
 		wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div/div[1]")));
 
 		// navigate to last page wait for page to load and assert that sign up was
 		// successful and then end Test case with quitting.
 
-		// Thread.sleep(5000);
+		// Thread.sleep(5000); if needed
 		String str = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div/div[1]")).getText();
 
 		assertTrue(str.contains(firstname));
